@@ -1,0 +1,21 @@
+@charset "UTF-8";
+header{
+		border: #9faabd 1px solid; height:20%; postion:relative;
+}
+
+#areaMain{
+		postition:relative; float:right; padding:10px 0;
+		border:#9faabd 1px solid; width:80%
+}
+#areaMain1{
+		postition:relative; float:right; padding:10px 0;
+		border:#9faabd 1px solid; width:80%
+}
+
+
+#areaSub{
+		 	width:20%;		float:left;
+}
+footer{
+		border:#9faabd 1px solid; clear:both; height:30%;
+}
