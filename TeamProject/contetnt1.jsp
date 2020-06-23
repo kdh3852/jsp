@@ -25,7 +25,7 @@
 <br>
 
 <div class="row">
-    <div class="col" >패스워드:</div>
+    <div class="col" >비밀번호:</div>
     <div class="col" >생일:</div>
     <div class="col" ></div>
 </div>
