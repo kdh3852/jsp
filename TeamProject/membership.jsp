@@ -3,22 +3,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>회원정보수정</title>
+  <title>회원가입</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  
+
+
+
+  
 </head>
 <body>
 	<div class="container">
-  <h2>회원정보수정</h2>
+  <h2>회원가입</h2>
   <hr>
   <form action="/action_page.php">
   	<div class="form-group">
       <label for="id">아이디:</label>
-      <input type="text" class="form-control" id="id" placeholder="아이디" name="id">
+      <input type="text" class="form-control" id="id" placeholder="아이디" name="id"> 
       <button style = "color: white; background-color: #0099FF;" type="submit">아이디 중복확인</button>
     </div>
      <div class="form-group">
@@ -26,8 +31,8 @@
       <input type="password" class="form-control" id="pwd" placeholder="비밀번호" name="pswd">
     </div>
     <div class="form-group">
-      <label for="pwdCheck">비밀번호 확인:</label>
-      <input type="password" class="form-control" id="pwdCheck" placeholder="비밀번호" name="pswdCheck">
+      <label for="pwdCheck">비밀번호확인:</label>
+      <input type="password" class="form-control" id="pwdCheck" placeholder="비밀번호확인" name="pswdCheck">
     </div>
      <div class="form-group">
       <label for="name">이름:</label>
@@ -52,7 +57,7 @@
       <option value="F">여</option>
       </select>                  
     </div>
-    <button type="submit" class="btn btn-primary form-control">수정하기</button>
+    <button type="submit" class="btn btn-primary form-control">회원 가입</button>
   </form>
 </div>
 
