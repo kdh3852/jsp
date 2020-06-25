@@ -4,6 +4,7 @@
 <html>
 <head>
   <title>회원정보수정</title>
+  <link rel = 'stylesheet' href ='template2.css'>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -12,6 +13,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<header>
+			<jsp:include page='top.jsp' flush='false'/>
+	</header>
 	<div class="container">
   <h2>회원정보수정</h2>
   <hr>
@@ -55,6 +59,9 @@
     <button type="submit" class="btn btn-primary form-control">수정하기</button>
   </form>
 </div>
+	<footer>
+			<jsp:include page = 'footer.jsp' flush='false'/>
+	</footer>
 
 </body>
 </html>
