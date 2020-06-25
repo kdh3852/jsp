@@ -1,0 +1,9 @@
+@charset "UTF-8";
+header{
+		border: #9faabd 1px solid; height:20%; postion:relative;
+}
+
+
+footer{
+		border:#9faabd 1px solid; clear:both; height:30%;
+}

@@ -38,8 +38,8 @@
       <input type="text" class="form-control" id="Nickname" placeholder="별명을 입력해 주세요" name="Nickname">
     </div>
     <div class="form-group">
-      <label for="number">전화번호:</label>
-      <input type=text class="form-control" id="number" placeholder="-빼고 전화 번호를 입력해 주세요" name="number">
+      <label for="tel">전화번호:</label>
+      <input type=text class="form-control" id="tel" placeholder="-빼고 전화 번호를 입력해 주세요" name="tel">
     </div>
     <div class="form-group">
       <label for="email">이메일:</label>
