@@ -1,18 +1,13 @@
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.Statement"%>
-<%@page import="java.sql.Connection" %>
-<%@page import="javax.sql.DataSource"%>
-<%@page import="javax.naming.InitialContext"%>
-<%@page import="javax.naming.Context"%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-    
+ <%
+	request.setCharacterEncoding("utf-8");
+	String id = request.getParameter("id");
+%>
 <!DOCTYPE html>
 <html>
 <head>
-  <title>회원가입</title>
+  <title>회원정보수정</title>
   <link rel = 'stylesheet' href ='template2.css'>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,24 +15,19 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-  
-
-
-
-  
 </head>
 <body>
+<% String user_id = request.getParameter("user_id"); %>
 	<header>
-			<jsp:include page='header.jsp' flush='false'/>
+			<jsp:include page='top.jsp' flush='false'/>
 	</header>
-	
 	<div class="container">
-  <h2>회원가입</h2>
+  <h2>회원정보수정</h2>
   <hr>
-  <form action="membershipPro.jsp" method="post">
+  <form action="EditprofilePro.jsp" method="post">
   	<div class="form-group">
       <label for="user_id">아이디:</label>
-      <input type="text" class="form-control" id="user_id" placeholder="아이디" name="user_id"> 
+      <input type="text" class="form-control" id="user_id" placeholder="아이디" name="user_id" value="<%=user_id%>"> 
       <button style = "color: white; background-color: #0099FF;" type="submit">아이디 중복확인</button>
     </div>
      <div class="form-group">
@@ -67,17 +57,16 @@
     <div class="form-group">
       <label for="gender">성별:</label>
       <select class="form-control" id="gender" name="gender">
-      <option value="남">남</option>
-      <option value="여">여</option>
-      </select>                  
+      <option value="남자">남</option>
+      <option value="여자">여</option>
+      </select>
     </div>
-    <button type="submit" class="btn btn-primary form-control" onclick = "alert('회원가입 성공');">회원 가입</button>
+    <input type="submit" class="btn btn-primary form-control" value = "수정하기" onclick = "alert('회정정보수정 완료')">
   </form>
-  
-  
 </div>
 	<footer>
 			<jsp:include page = 'footer.jsp' flush='false'/>
 	</footer>
+
 </body>
 </html>

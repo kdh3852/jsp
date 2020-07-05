@@ -9,7 +9,7 @@
 </head>
 <body>
 	<header>
-			<jsp:include page='top.jsp' flush='false'/>
+			<jsp:include page='header.jsp' flush='false'/>
 	</header>
 	
 	<div id = 'contetnt'>
@@ -17,12 +17,9 @@
 				<jsp:include page='left.jsp' flush='false'/>
 			</section>
 			
-			<section id='areaMain'>
-					<jsp:include page = 'contetnt.jsp' flush='false'/>
-			</section>
 			
 			<section id='areaMain1'>
-					<jsp:include page = 'contetnt1.jsp' flush='false'/>
+					<jsp:include page='content1.jsp' flush='false'/>
 			</section>
 			
 			<footer>

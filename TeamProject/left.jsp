@@ -13,77 +13,91 @@
 </head>
 <style>
 body {
-    font-family: "Lato", sans-serif;
-}
-.sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #9faabd;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-}
-
-.sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-}
-
-.sidenav a:hover {
-    color: #f1f1f1;
-}
-
-.sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-}
-
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
+		background:gray;
+		margin: 0;
+		padding: 0;
+	}
+	#wrap {
+		width:100%;
+		height:100px;
+		background:white;
+	}
+	#sidebar {
+		background: #333;
+		width: 300px;
+		height: 100%;
+		top: 0;
+		left: -300px;
+		position: fixed;
+	}
+	#sidebar > ul {
+		color:white;
+		margin:0;
+		padding: 0;
+		top:50px;
+		left:70px;
+		position: absolute;
+	}
+	#sidebar li {
+		margin: 0 0 20px;
+		list-style: none;
+	}
+	#sidebar > button {
+		background:#333;
+		position: absolute;
+		top: 150px;
+		left: 300px;
+		width: 52px;
+		height: 52px;
+		border: none;
+		color: white;
+	}
 </style>
+
+
+
 
 
 
 </head>
 <body>
 
-<div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="Edit profile.jsp">정보수정</a>
-  <a href="Withdrawal.jsp">회원탈퇴</a>
-</div>
+<div id="wrap">
+		<aside id="sidebar">
+			<ul>
+				<li><a href="Editprofile.jsp">정보수정</a></li>
+				<li><a href="Withdrawal.jsp">회원탈퇴</a></li>
+				<li><a href="#">내가 쓴 글</a></li>
+				<li><a href="#">찜목록</a></li>
+			</ul>
+			<button><span class="btn_t">OPEN</span></button>
+		</aside>
+	</div>
 
-<h2>Mypage</h2>
-
-<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
- 
 
 
 
-<script>
-function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-}
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		var duration = 300;
 
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-}
+		var $side = $('#sidebar');
+		var $sidebt = $side.find('button').on('click', function(){
+			$side.toggleClass('open');
+
+			if($side.hasClass('open')) {
+				$side.stop(true).animate({left:'0px'}, duration);
+				$sidebt.find('span').text('CLOSE');
+			}else{
+				$side.stop(true).animate({left:'-300px'}, duration);
+				$sidebt.find('span').text('OPEN');
+			};
+		});
+	});
 </script>
+
+
 </body>
 </html>
-
-
-

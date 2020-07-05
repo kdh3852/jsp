@@ -6,18 +6,15 @@
 <%@page import="javax.naming.Context"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    import = "java.sql.*"%>
+    <%@page import = "db.LoginDAO, java.util.ArrayList, db.LoginDTO" %>
     <% request.setCharacterEncoding("UTF-8");%>
 <%
-	Context initCtx = new InitialContext();
-		
-	DataSource ds = (DataSource) initCtx.lookup("java:comp/env/jdbc/jskim");
+	LoginDTO dto = new LoginDTO ();
+	LoginDAO dbpro = new LoginDAO();
+	ArrayList<LoginDTO> dtos = dbpro.listUser();
 	
-	Connection con = ds.getConnection();
-	String sql = "SELECT * FROM MEMBERSHIP1";
-	Statement st = con.createStatement();
-	
-	ResultSet rs = st.executeQuery(sql);
 	
 %>
 <!DOCTYPE html>
@@ -45,35 +42,33 @@
 			<th>이메일</th>
 			<th>성별</th>
 		</tr>
-<%
-	while(rs.next()){
-		String id = rs.getString("ID");
-		String pwd = rs.getString("PWD");
-		String pwdcheck = rs.getString("PWDCHECK");
-		String name = rs.getString("NAME");
-		String Nickname = rs.getString("NICKNAME");
-		String tel = rs.getString("TEL");
-		String email = rs.getString("EMAIL");
-		String gender = rs.getString("GENDER");
-		
-		
-%>
 		<tr>
-			<td><%=id %></td>
+<%
+	for(int i=0; i<dtos.size(); i++){
+		dto = dtos.get(i);
+		String user_id = dto.getUser_id();
+		String pwd = dto.getPwd();
+		String pwdcheck = dto.getPwdCheck();
+		String name = dto.getName();
+		String nickname = dto.getNickname();
+		String tel = dto.getTel();
+		String email = dto.getEmail();
+		String gender =dto.getGender();
+	
+%>
+		
+			<td><a href=Editprofile.jsp?user_id=<%=user_id %>><%=user_id%></a></td>
 			<td><%=pwd %></td>
 			<td><%=pwdcheck %></td>
 			<td><%=name %></td>
-			<td><%=Nickname %></td>
+			<td><%=nickname %></td>
 			<td><%=tel %></td>
 			<td><%=email %></td>
 			<td><%=gender %></td>
 			
+
 		</tr>
-	<% } 
-	con.close();
-	st.close();
-	rs.close();
-	%>
+<%} %>
 	</table>
 	
 	</div>
