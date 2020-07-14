@@ -1,26 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="db.LoginDAO" %>
+<%@ page import="java.io.PrintWriter" %>
+<jsp:useBean id="dto" class="db.LoginDAO" scope="page"/>
  <%
 	request.setCharacterEncoding("utf-8");
-	
+	String id = request.getParameter("id");
 %>
 <!DOCTYPE html>
 <html>
 <head>
   <title>회원정보수정</title>
-  <script type="text/javascript">
-	function idDupPopup(){
-		window.open('idCheck.jsp','','width=500,height=300');
-	}
-	function memberSubmit(){
-		var idCheck = document.f1.idCheck.value;
-		if(idCheck =='t'){
-			document.f1.submit();
-		}else {
-			alert('아이디 중복체크를 해주세요');
-		}
-	}	
-	</script>
   <link rel = 'stylesheet' href ='template2.css'>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,9 +20,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<% String user_id = request.getParameter("user_id"); %>
 	<header>
-			<jsp:include page='top.jsp' flush='false'/>
+			<jsp:include page='header.jsp' flush='false'/>
 	</header>
 	<div class="container">
   <h2>회원정보수정</h2>
@@ -40,7 +29,8 @@
   <form action="EditprofilePro.jsp" method="post">
   	<div class="form-group">
       <label for="user_id">아이디:</label>
-      <input type="text" class="form-control" id="user_id" placeholder="아이디" name="user_id" value="<%=user_id%>"> 
+      <input type="text" class="form-control" id="user_id" placeholder="아이디" name="user_id" value="<%=request.getSession().getAttribute("id")%>"> 
+      
     </div>
      <div class="form-group">
       <label for="pwd">비밀번호:</label>

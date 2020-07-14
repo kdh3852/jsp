@@ -7,7 +7,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     import = "java.sql.*"%>
-<%@ page import = "db.LoginDAO" %>
+<%@ page import ="db.LoginDAO, db.LoginDTO" %>
 
 <% request.setCharacterEncoding("utf-8");
 
@@ -23,7 +23,7 @@
 	LoginDAO dbpro = LoginDAO.getInstance();
 	dbpro.updateUser(user_id, pwd, pwdCheck, name, nickname, tel, email, gender);
 	
-	response.sendRedirect("main.jsp");
+	response.sendRedirect("Main_Index.jsp");
 
 
 

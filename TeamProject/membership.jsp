@@ -99,7 +99,7 @@
       <option value="여">여</option>
       </select>
     </div>
-   <input type="button" class="btn btn-primary form-control" value="회원가입"  onclick="showPopup();" >
+   <input type="submit" class="btn btn-primary form-control"  value = "회원 가입" onclick="showPopup();" ></input>
    &nbsp;&nbsp;
    <input type="reset" name="reset"		class="btn btn-primary form-control" value="다시입력">
   </form>
@@ -108,4 +108,3 @@
 			<jsp:include page = 'footer.jsp' flush='false'/>
 	</footer>
 </body>
-</html>

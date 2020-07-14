@@ -57,7 +57,7 @@
 	
 %>
 		
-			<td><a href=Editprofile.jsp?user_id=<%=user_id %>><%=user_id%></a></td>
+			<td><%=user_id%></td>
 			<td><%=pwd %></td>
 			<td><%=pwdcheck %></td>
 			<td><%=name %></td>
