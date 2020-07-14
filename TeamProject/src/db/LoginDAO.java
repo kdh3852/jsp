@@ -2,18 +2,17 @@ package db;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.sql.Statement;
-
+import java.sql.*;	
 
 public class LoginDAO {
 	private static LoginDAO instance = new LoginDAO();
 	public static LoginDAO getInstance() {
-		return instance;
+		return instance;		
 	}
 	private Connection getConnection() throws Exception{
 		Connection con=null;
@@ -56,14 +55,14 @@ public class LoginDAO {
 			}
 		}
 	//회원탈퇴?
-	public void deleteUser(String id) throws Exception{
+	public void deleteUser(String user_id) throws Exception{
 		Connection con = null;
 		PreparedStatement pstmt=null;
 		try {
 			con = getConnection ();
-			String sql = "delete from MEMBER where id = ? ";
+			String sql = "delete from MEMBER where user_id = ? ";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
+			pstmt.setString(1, user_id);
 			pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -135,7 +134,81 @@ public class LoginDAO {
 			}
 			return dtos;
 		}
+	//로그인
+	public int LoginCheck(String user_id, String pwd) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String id = null;
+		int result = 0;
+		
+		try {
+			con = getConnection();
+			String sql = "select user_id from MEMBER where user_id=? and pwd=? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, user_id);
+			pstmt.setString(2, pwd);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				id=rs.getString("user_id");
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+			
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+        if(id != null) result = 1;
+        else result = 0;
+        return result;
+        
+        
+    }
+	//아이디중복
+	public boolean idCheck(String user_id){
+		boolean b = false;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		
+		try {
+			String sql = "select user_id from MEMBER where user_id like ?";
+			con = getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, user_id);
+			rs = pstmt.executeQuery();
+			b=rs.next();
+		} catch (Exception e) {
+			System.out.println("idCheck err : " + e);
+		} finally {
+			try {
+				if(rs!=null)rs.close();
+				if(pstmt!=null)pstmt.close();
+				if(con!=null)con.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+		}
+		return b;
+	}
 }
+	
+	
+	
+
+	
+	
+
+
+
 	
 
 	
