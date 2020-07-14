@@ -24,11 +24,11 @@
 		 <form action="delete.jsp">
   	<div class="form-group">
       <label for="user_id">아이디:</label>
-      <input type="text" class="form-control" id="user_id" placeholder="아이디" name="user_id">
+      <input type="text" class="form-control" id="user_id" placeholder="아이디" name="user_id" value="<%=user_id%>">
     </div>
      <div class="form-group">
       <label for="pwd">패스워드:</label>
-      <input type="password" class="form-control" id="pwd" placeholder="비밀번호" name="pswd">
+      <input type="password" class="form-control" id="pwd" placeholder="비밀번호" name="pwd">
     </div>
         <input id="btn-Yes" class="btn btn-lg btn-primary btn-block" type="submit" value="회원탈퇴"
         	onclick = "Location.href='delete.jsp?user_id=<%=user_id%>'">

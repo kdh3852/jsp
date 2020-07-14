@@ -68,7 +68,7 @@ body {
 				<li><a href="Editprofile.jsp">정보수정</a></li>
 				<li><a href="Withdrawal.jsp">회원탈퇴</a></li>
 				<li><a href="#">내가 쓴 글</a></li>
-				<li><a href="#">찜목록</a></li>
+				<li><a href="cart.jsp">찜목록</a></li>
 			</ul>
 			<button><span class="btn_t">OPEN</span></button>
 		</aside>

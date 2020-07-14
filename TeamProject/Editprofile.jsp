@@ -2,12 +2,25 @@
     pageEncoding="UTF-8"%>
  <%
 	request.setCharacterEncoding("utf-8");
-	String id = request.getParameter("id");
+	
 %>
 <!DOCTYPE html>
 <html>
 <head>
   <title>회원정보수정</title>
+  <script type="text/javascript">
+	function idDupPopup(){
+		window.open('idCheck.jsp','','width=500,height=300');
+	}
+	function memberSubmit(){
+		var idCheck = document.f1.idCheck.value;
+		if(idCheck =='t'){
+			document.f1.submit();
+		}else {
+			alert('아이디 중복체크를 해주세요');
+		}
+	}	
+	</script>
   <link rel = 'stylesheet' href ='template2.css'>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,7 +41,6 @@
   	<div class="form-group">
       <label for="user_id">아이디:</label>
       <input type="text" class="form-control" id="user_id" placeholder="아이디" name="user_id" value="<%=user_id%>"> 
-      <button style = "color: white; background-color: #0099FF;" type="submit">아이디 중복확인</button>
     </div>
      <div class="form-group">
       <label for="pwd">비밀번호:</label>

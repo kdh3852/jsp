@@ -7,12 +7,36 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "db.LoginDTO, db.LoginDAO" %>
     
     
 <!DOCTYPE html>
 <html>
 <head>
   <title>회원가입</title>
+	<script type="text/javascript">
+	function idDupPopup(){
+		window.open('idCheck.jsp','','width=500,height=300');
+	}
+	function memberSubmit(){
+		var idCheck = document.f1.idCheck.value;
+		if(idCheck =='t'){
+			document.f1.submit();
+		}else {
+			alert('아이디 중복체크를 해주세요');
+		}
+	}	
+	</script>
+	<script type="text/javascript">
+  function showPopup() { window.open("show.jsp", "a", "width=400, height=300, left=100, top=50"); }
+  </script>
+
+
+	
+	
+
+
+
   <link rel = 'stylesheet' href ='template2.css'>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,17 +60,21 @@
   <hr>
   <form action="membershipPro.jsp" method="post">
   	<div class="form-group">
+  		<input type = "hidden" name="idDupChk" value="f"/>
       <label for="user_id">아이디:</label>
-      <input type="text" class="form-control" id="user_id" placeholder="아이디" name="user_id"> 
-      <button style = "color: white; background-color: #0099FF;" type="submit">아이디 중복확인</button>
+      <input type="text" class="form-control" id="user_id" name ="user_id" placeholder="아이디">
+      <input type="button" value="중복체크"  onclick="idDupPopup()">
+      <input type="hidden" name="idDuplication" value="idUncheck" >
     </div>
-     <div class="form-group">
-      <label for="pwd">비밀번호:</label>
-      <input type="password" class="form-control" id="pwd" placeholder="비밀번호" name="pwd">
+    
+    <div class="form-group">
+      <label >비밀번호:</label>
+      <input type="password" class="form-control" id="pwd" name ="pwd" placeholder="비밀번호"  required />
     </div>
     <div class="form-group">
-      <label for="pwdCheck">비밀번호확인:</label>
-      <input type="password" class="form-control" id="pwdCheck" placeholder="비밀번호확인" name="pwdCheck">
+      <label >비밀번호확인:</label>
+      <input type="password" class="form-control" id="pwdCheck" name = "pwdCheck" placeholder="비밀번호확인"  required />
+      <p id = "pwsame" style="color:red;"></p>
     </div>
      <div class="form-group">
       <label for="name">이름:</label>
@@ -69,12 +97,12 @@
       <select class="form-control" id="gender" name="gender">
       <option value="남">남</option>
       <option value="여">여</option>
-      </select>                  
+      </select>
     </div>
-    <button type="submit" class="btn btn-primary form-control" onclick = "alert('회원가입 성공');">회원 가입</button>
+   <input type="button" class="btn btn-primary form-control" value="회원가입"  onclick="showPopup();" >
+   &nbsp;&nbsp;
+   <input type="reset" name="reset"		class="btn btn-primary form-control" value="다시입력">
   </form>
-  
-  
 </div>
 	<footer>
 			<jsp:include page = 'footer.jsp' flush='false'/>

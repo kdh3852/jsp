@@ -18,7 +18,7 @@
   <%
   	LoginDAO dbPro = LoginDAO.getInstance();
   	dbPro.insertUser(dto);
-  	response.sendRedirect("text1.jsp");
+  	
 	%>
 <!DOCTYPE html>
 <html>

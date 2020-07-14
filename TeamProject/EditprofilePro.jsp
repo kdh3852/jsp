@@ -23,7 +23,7 @@
 	LoginDAO dbpro = LoginDAO.getInstance();
 	dbpro.updateUser(user_id, pwd, pwdCheck, name, nickname, tel, email, gender);
 	
-	response.sendRedirect("text1.jsp");
+	response.sendRedirect("main.jsp");
 
 
 
