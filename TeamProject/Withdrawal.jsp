@@ -10,11 +10,21 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 	<title>회원탈퇴</title>
 	<link rel = 'stylesheet' href ='template2.css'>
+	<script>
+	function check(){
+		if(!document.delform.pwd.value) {
+			arlert ("비밀번호를 입력하지 않으셨습니다.");
+			return false;
+		}
+	}
 	
+	</script>
 </head>
 <body><%
 	request.setCharacterEncoding("utf-8");
-	String id = request.getParameter("id");
+	String user_id = request.getParameter("id");
+
+	
 %>
 	<header>
 			<jsp:include page='header.jsp' flush='false'/>
@@ -23,7 +33,7 @@
 <h2>회원탈퇴</h2>
   <hr>
 	<div>
-		 <form action="delete.jsp">
+		 <form action="delete.jsp" name = "delform" onSubmit="return check()">
   	<div class="form-group">
       <label for="user_id">아이디:</label>
       <input type="text" class="form-control" id="user_id" placeholder="아이디" name="user_id" value="<%=request.getSession().getAttribute("id")%>"> 
@@ -32,9 +42,7 @@
       <label for="pwd">패스워드:</label>
       <input type="password" class="form-control" id="pwd" placeholder="비밀번호" name="pwd">
     </div>
-        <input id="btn-Yes" class="btn btn-lg btn-primary btn-block" type="submit" value="회원탈퇴"
-        	onclick = "Location.href='delete.jsp?user_id="<%=request.getSession().getAttribute("id")%>
-        	>
+        <input id="btn-Yes" class="btn btn-lg btn-primary btn-block" type="submit" value="회원탈퇴">
       </form>
 		</div>
 		<br>

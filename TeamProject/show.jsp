@@ -17,19 +17,10 @@ function moveClose() {
   self.close();
 }
 </script>
-
-
-	
 </head>
 <body>
 	회원가입 성공 
 	&nbsp;&nbsp;
 	<input type="button" value="확인" class="btn btn-primary form-control" onclick="moveClose();" />
-
-
-
-
-
-
 </body>
 </html>

@@ -11,7 +11,6 @@
 			result = loginDAO.idCheck(user_id);
 		}
 %>
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -22,7 +21,6 @@
 		opener.f1.idDupChk.value = 't';
 		self.close();
 	}
-
 </script>
 </head>
 <body>
@@ -34,7 +32,7 @@
 	
 	<%} else if(result ==false){
 		%>
-		<a href="membership.jsp" onclick="setId()">사용가능 </a>
+		사용가능 
 	<%} else{ %>
 		아이디 중복
 	<% } %> 

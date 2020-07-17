@@ -1,28 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import ="db.LoginDAO, db.LoginDTO" %>
-<% session.invalidate();%>
-<% request.setCharacterEncoding("utf-8");
-		String user_id = request.getParameter("user_id");
-		String pwd = request.getParameter("password");
-		LoginDAO dbPro = LoginDAO.getInstance();
-		dbPro.deleteUser(user_id);
-		LoginDAO dao = new LoginDAO();
-		if(dao.LoginCheck(user_id, pwd)==1) {
-			session.setAttribute("id", user_id);
-			response.sendRedirect("Main_Index.jsp");
-		} else {
-%>
-		<script>
-				alert("회원탈퇴 성공");
-				location.href="login.jsp";
-		</script>
-    
-<%
-		}
-%>
-		
+<% 
 
+		String user_id = (String)session.getAttribute("id");
+		String pwd = request.getParameter("pwd");
+		
+		LoginDAO dbPro = LoginDAO.getInstance();
+		boolean result = dbPro.deleteId(user_id, pwd);
+		
+		if(result){
+			session.invalidate();
+		
+		%>
+		<script>
+					alert("탈퇴성공.");
+					location.href="Main_Index.jsp";
+		</script>
+		<%} else { %>
+		<script>
+					alert("비밀번호가틀립니다.");
+					location.href="Withdrawal.jsp";
+		</script>
+		
+		<%} %>
 <!DOCTYPE html>
 <html>
 

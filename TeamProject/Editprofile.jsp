@@ -1,11 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+
 <%@ page import="db.LoginDAO" %>
-<%@ page import="java.io.PrintWriter" %>
-<jsp:useBean id="dto" class="db.LoginDAO" scope="page"/>
+<%@ page import="db.LoginDTO" %>
  <%
-	request.setCharacterEncoding("utf-8");
-	String id = request.getParameter("id");
+ request.setCharacterEncoding("euc-kr"); 
+	String user_id = (String)session.getAttribute("id");
+	
+	LoginDAO dao = LoginDAO.getInstance();
+	LoginDTO dto = dao.getInform(user_id);
+			
 %>
 <!DOCTYPE html>
 <html>

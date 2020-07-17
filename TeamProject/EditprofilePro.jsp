@@ -24,9 +24,6 @@
 	dbpro.updateUser(user_id, pwd, pwdCheck, name, nickname, tel, email, gender);
 	
 	response.sendRedirect("Main_Index.jsp");
-
-
-
 %>
 <!DOCTYPE html>
 <html>

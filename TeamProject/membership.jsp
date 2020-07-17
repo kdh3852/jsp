@@ -4,12 +4,9 @@
 <%@page import="javax.sql.DataSource"%>
 <%@page import="javax.naming.InitialContext"%>
 <%@page import="javax.naming.Context"%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "db.LoginDTO, db.LoginDAO" %>
-    
-    
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,24 +16,17 @@
 		window.open('idCheck.jsp','','width=500,height=300');
 	}
 	function memberSubmit(){
-		var idCheck = document.f1.idCheck.value;
+		var idCheck = document.f.idCheck.value;
 		if(idCheck =='t'){
-			document.f1.submit();
+			document.f.submit();
 		}else {
 			alert('아이디 중복체크를 해주세요');
 		}
-	}	
+	}
 	</script>
 	<script type="text/javascript">
   function showPopup() { window.open("show.jsp", "a", "width=400, height=300, left=100, top=50"); }
   </script>
-
-
-	
-	
-
-
-
   <link rel = 'stylesheet' href ='template2.css'>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,12 +34,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-  
-
-
-
-  
-</head>
+ </head>
 <body>
 	<header>
 			<jsp:include page='header.jsp' flush='false'/>
