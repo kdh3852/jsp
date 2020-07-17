@@ -33,9 +33,8 @@
   <hr>
   <form action="EditprofilePro.jsp" method="post">
   	<div class="form-group">
-      <label for="user_id">아이디:</label>
-      <input type="text" class="form-control" id="user_id" placeholder="아이디" name="user_id" value="<%=request.getSession().getAttribute("id")%>"> 
-      
+      <label for="user_id">아이디:<%=request.getSession().getAttribute("id")%></label>
+      <input type="text" class="form-control" id="user_id" placeholder="아이디" name="user_id" value="<%=request.getSession().getAttribute("id")%>">
     </div>
      <div class="form-group">
       <label for="pwd">비밀번호:</label>
@@ -64,8 +63,8 @@
     <div class="form-group">
       <label for="gender">성별:</label>
       <select class="form-control" id="gender" name="gender">
-      <option value="남자">남</option>
-      <option value="여자">여</option>
+      <option value="남">남</option>
+      <option value="여">여</option>
       </select>
     </div>
     <input type="submit" class="btn btn-primary form-control" value = "수정하기" onclick = "alert('회정정보수정 완료')">

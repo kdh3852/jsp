@@ -23,8 +23,6 @@
 <body><%
 	request.setCharacterEncoding("utf-8");
 	String user_id = request.getParameter("id");
-
-	
 %>
 	<header>
 			<jsp:include page='header.jsp' flush='false'/>

@@ -29,7 +29,7 @@
   <h1>내정보 / 내 반려 동물 정보</h1>
   <hr><br>
 <div class="row">
-    <div class="col" >아이디: <%=request.getSession().getAttribute("id")%></div>
+    <div class="col" >아이디:<%=request.getSession().getAttribute("id")%></div>
     <div class="col" >이름:</div>
     <div class="col" >펫 사진:</div>
 </div>
