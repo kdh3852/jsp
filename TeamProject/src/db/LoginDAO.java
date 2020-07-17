@@ -10,6 +10,9 @@ import java.sql.Statement;
 import java.sql.*;	
 
 public class LoginDAO {
+	private Connection conn= null;
+	private PreparedStatement pstmt = null;
+	private ResultSet rs = null;
 	private static LoginDAO instance = new LoginDAO();
 	public static LoginDAO getInstance() {
 		return instance;		
@@ -30,7 +33,6 @@ public class LoginDAO {
 	}
 	//정보수정
 	public void updateUser(String user_id, String pwd, String pwdCheck, String name, String nickname, String tel, String email, String gender) throws Exception{
-		
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -50,27 +52,69 @@ public class LoginDAO {
 			e.printStackTrace();
 		}finally {
 			try { if (pstmt !=null) pstmt.close();
-				  if(con!=null) con.close();
+				  if(con!=null) conn.close();
 			}catch(Exception e) {e.printStackTrace();}
 			}
 		}
-	//회원탈퇴?
-	public void deleteUser(String user_id) throws Exception{
-		Connection con = null;
-		PreparedStatement pstmt=null;
+	//정보불러오기
+	public LoginDTO getInform(String user_id) {
+		LoginDTO inform = null;
 		try {
-			con = getConnection ();
-			String sql = "delete from MEMBER where user_id = ? ";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, user_id);
-			pstmt.executeUpdate();
-		}catch(Exception e) {
+			conn = getConnection();
+			String sql = "select * from MEMBER where user_id=?";
+			pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, user_id);
+	        rs = pstmt.executeQuery();
+	        if(rs.next()) {
+	        	inform = new LoginDTO();
+	        	inform.setUser_id(rs.getString("user_id"));
+	        	inform.setName(rs.getString("name"));
+	        	inform.setNickname(rs.getString("nickname"));
+	        	inform.setTel(rs.getString("tel"));
+	        	inform.setEmail(rs.getString("email"));
+	        	inform.setGender(rs.getString("gender"));
+	        }
+		  }catch(Exception e){
+		   e.printStackTrace();
+		  }finally{
+			  try {rs.close();}catch(SQLException s) {}
+				 try {pstmt.close();}catch(SQLException s) {}
+				 try {conn.close();}catch(SQLException s) {}
+		  }
+		  return inform;
+		 }
+		
+
+
+	//회원탈퇴
+	public boolean deleteId(String user_id, String pwd) {
+		boolean result = false;
+		String dbpw="";
+		try {
+			
+	        conn = getConnection();
+	        String sql = "select pwd from MEMBER where user_id=?";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, user_id);
+	        rs = pstmt.executeQuery();
+	        if(rs.next()) {
+	        	dbpw = rs.getString("pwd");
+	        	if(dbpw.equals(pwd)) {
+	        		String delsql ="delete from MEMBER where user_id=?";
+	        		pstmt = conn.prepareStatement(delsql);
+	        		pstmt.setString(1, user_id);
+	        		pstmt.execute();
+	        		result = true;
+	        	}
+	        }
+		} catch(Exception e) {
 			e.printStackTrace();
-		}finally {
-			try {if(pstmt!=null) pstmt.close();
-				 if(con!=null) con.close();
-			}catch(Exception e) {e.printStackTrace();}
+		} finally {
+			 try {rs.close();}catch(SQLException s) {}
+			 try {pstmt.close();}catch(SQLException s) {}
+			 try {conn.close();}catch(SQLException s) {}
 		}
+		return result;
 	}
 	//회원가입
 	public void insertUser(LoginDTO dto) throws Exception{
@@ -99,7 +143,7 @@ public class LoginDAO {
 			}
 		}
 	
-	//listUser
+	//회원리스트
 	public ArrayList<LoginDTO> listUser(){
 		ArrayList<LoginDTO> dtos = new ArrayList<LoginDTO>();
 		Connection con = null;
@@ -168,10 +212,8 @@ public class LoginDAO {
         if(id != null) result = 1;
         else result = 0;
         return result;
-        
-        
     }
-	//아이디중복
+	//아이디중복체크
 	public boolean idCheck(String user_id){
 		boolean b = false;
 		Connection con = null;
